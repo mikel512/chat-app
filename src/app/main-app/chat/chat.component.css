@@ -1,0 +1,17 @@
+.form-control::placeholder {
+    color:gray;
+    opacity: 1;
+}
+
+.footer {
+    position: absolute;
+}
+
+.users-p {
+    padding-left: 2rem;
+    margin-bottom: 0%;
+}
+
+.chat-input {
+    padding-bottom: 10px;
+}

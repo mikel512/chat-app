@@ -1,0 +1,80 @@
+<nav #navbar class="fixed-top navbar navbar-expand-sm navbar-dark bg-dark bg-gradient">
+    <div class="mx-auto">
+        <!-- <a class="navbar-brand nav-adjust d-none d-sm-block">Autism Advocacy Network</a>
+        <a class="navbar-brand d-block d-sm-none">Autism Advocacy Network</a> -->
+        <a class="navbar-brand">Autism Advocacy Network</a>
+        <button class="navbar-toggler mx-2" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+            <ul id="loggedinMenu" class="navbar-nav d-flex">
+                <li class="nav-item dropdown">
+                    <a id="userLink" type="button" class="nav-link dropdown-toggle"
+                        data-bs-toggle="dropdown">
+                        <i class="far fa-user px-2"></i>{{username}}
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li>
+                            <a class="dropdown-item" data-bs-target="#mailboxModal"
+                               data-bs-toggle="modal" href="#">My Mail</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-cogs px-2"></i>Options
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li>
+                            <a class="dropdown-item" data-bs-target="#appearanceModal" 
+                                data-bs-toggle="modal" href="#">Appearance</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a id="logoutLink" type="button" class="nav-link" (click)="onLogout()">
+                        <i class="fas fa-sign-out-alt px-2"></i>Logout
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Modal -->
+<div class="modal fade" id="appearanceModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="exampleModalLabel">Change Appearance</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <h5>Themes</h5>
+                    <hr/>
+                    <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                        <input type="radio" class="btn-check" (click)="toggleDefault()" name="btnradio" id="btnradio1"
+                            autocomplete="off" checked>
+                        <label class="btn btn-outline-primary" for="btnradio1">Dark (Default)</label>
+
+                        <input type="radio" class="btn-check" (click)="toggleInvert()" name="btnradio" id="btnradio3"
+                            autocomplete="off">
+                        <label class="btn btn-outline-primary" for="btnradio3">Inverted</label>
+
+                        <input type="radio" class="btn-check" (click)="toggleLight()" name="btnradio" id="btnradio2"
+                            autocomplete="off">
+                        <label class="btn btn-outline-primary" for="btnradio2">Light</label>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div> -->
+        </div>
+    </div>
+</div>

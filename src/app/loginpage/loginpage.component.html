@@ -1,0 +1,82 @@
+<!--
+    The duplicate divs are for responsive design.
+    As the viewport changes, different divs are shown and 
+    hidden, each with its own css styling.
+-->
+<div class="container-fluid bg-dark d-flex justify-content-center" [style.height.px]="pageHeight">
+    <div class="d-md-none">
+        <div class="row">
+            <div class="col-12 fs-1" style="padding-top: 6em;">
+                {{title}}
+            </div>
+        </div>
+        <div class="row front-page-button">
+            <a id="loginLink" type="button" class="btn btn-outline-light btn-lg" data-bs-toggle="modal"
+                (click)="getLoginCaptcha()"
+                data-bs-target="#loginModal">Login</a>
+        </div>
+        <div class="row front-page-button">
+            <a id="loginLink" type="button" class="btn btn-outline-light btn-lg" data-bs-toggle="modal"
+                (click)="getRegCaptcha()"
+                data-bs-target="#registerModal">Register</a>
+        </div>
+    </div>
+
+    <div class="d-none d-md-block d-lg-none">
+        <div class="row">
+            <div class="col-md-12 fs-1" style="padding-top: 5em;">
+                {{title}}
+            </div>
+        </div>
+        <div class="row front-page-md-button">
+            <a id="loginLink" type="button" class="btn btn-outline-light btn-lg" data-bs-toggle="modal"
+                (click)="getLoginCaptcha()"
+                data-bs-target="#loginModal">Login</a>
+        </div>
+        <div class="row front-page-md-button">
+            <a id="loginLink" type="button" class="btn btn-outline-light btn-lg" data-bs-toggle="modal"
+                (click)="getRegCaptcha()"
+                data-bs-target="#registerModal">Register</a>
+        </div>
+    </div>
+
+    <div class="d-none d-lg-block d-xl-none">
+        <div class="row">
+            <div class="col-lg-12 fs-1" style="padding-top: 6em;">
+                {{title}}
+            </div>
+        </div>
+        <div class="row front-page-lg-button">
+            <a id="loginLink" type="button" class="btn btn-outline-light btn-lg" data-bs-toggle="modal"
+                (click)="getLoginCaptcha()"
+                data-bs-target="#loginModal">Login</a>
+        </div>
+        <div class="row front-page-lg-button">
+            <a id="loginLink" type="button" class="btn btn-outline-light btn-lg" data-bs-toggle="modal"
+                (click)="getRegCaptcha()"
+                data-bs-target="#registerModal">Register</a>
+        </div>
+    </div>
+
+    <div class="d-none d-xl-block">
+        <div class="row">
+            <div class="col-lg-12 fs-1" style="padding-top: 6em;">
+                {{title}}
+            </div>
+        </div>
+        <div class="row front-page-xl-button">
+            <a id="loginLink" type="button" class="btn btn-outline-light btn-lg" data-bs-toggle="modal"
+                (click)="getLoginCaptcha()"
+                data-bs-target="#loginModal">Login</a>
+        </div>
+        <div class="row front-page-xl-button">
+            <a id="loginLink" type="button" class="btn btn-outline-light btn-lg" data-bs-toggle="modal"
+                (click)="getRegCaptcha()"
+                data-bs-target="#registerModal">Register</a>
+        </div>
+    </div>
+
+    <app-login #loginComponent [getCaptcha]="loginCaptcha"></app-login>
+
+    <app-register #registerComponent [getCaptcha]="regCaptcha"></app-register>
+</div>

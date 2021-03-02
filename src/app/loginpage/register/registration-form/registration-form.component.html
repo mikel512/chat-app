@@ -1,0 +1,105 @@
+<ng-container #formContainer *ngIf="registerForm">
+    <div #modalBody class="modal-body bg-secondary">
+        <ng-container *ngIf="showTos === false">
+
+            <form [formGroup]="registerForm" #formDir="ngForm">
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="username" placeholder="Username"
+                        formControlName="username" required>
+                    <label for="username">Desired username</label>
+
+                    <div *ngIf="username && username.invalid && (username.dirty || username.touched)"
+                        class="alert alert-danger">
+                        <ng-container *ngIf="username.errors">
+                            <div *ngIf="username.errors.required">
+                                Username is required.
+                            </div>
+                            <div *ngIf="username.errors.minlength">
+                                Username must be at least 4 characters long.
+                            </div>
+                            <div *ngIf="username.errors.pattern">
+                                Username can only have alphabetical characters.
+                            </div>
+                        </ng-container>
+                    </div>
+                </div>
+
+                <!-- phone input -->
+                <div class="form-floating mb-3">
+                    <input type="tel" class="form-control" id="phone" placeholder="(___)___-____" maxlength="16"
+                        formControlName="phone" [(ngModel)]="phoneNum" phone required>
+                    <label for="phone">Phone number</label>
+                </div>
+
+                <!-- password input -->
+                <div class="form-floating mb-3">
+                    <input type="password" class="form-control" id="password" placeholder="Password"
+                        formControlName="password" required>
+                    <label for="password">Password</label>
+                    <div *ngIf="password && passwordConfirm && password.invalid && (passwordConfirm.dirty || passwordConfirm.touched)"
+                        class="alert alert-danger">
+                        <ng-container *ngIf="password.errors">
+                            <div *ngIf="password.errors.required">
+                                Password is required.
+                            </div>
+                            <div *ngIf="password.errors.minlength">
+                                Password must be at least 8 characters long.
+                            </div>
+                        </ng-container>
+                    </div>
+                    <div *ngIf="registerForm.errors?.mismatchedPasswords && (registerForm.touched || registerForm.dirty)"
+                        class="cross-validation-error-message alert alert-danger">
+                        Passwords are not matching.
+                    </div>
+                </div>
+
+                <!-- password confirmation -->
+                <div class="form-floating mb-3">
+                    <input type="password" class="form-control" id="passwordConfirm" formControlName="passwordConfirm"
+                        placeholder="Password" required>
+                    <label for="passwordConfirm">Confirm Password</label>
+
+                    <div *ngIf="passwordConfirm && passwordConfirm.invalid && (passwordConfirm.dirty || passwordConfirm.touched)"
+                        class="alert alert-danger">
+                        <ng-container *ngIf="passwordConfirm.errors">
+                            <div *ngIf="passwordConfirm.errors.required">
+                                Password is required.
+                            </div>
+                            <div *ngIf="passwordConfirm.errors.minlength">
+                                Password must be at least 8 characters long.
+                            </div>
+                        </ng-container>
+                    </div>
+                    <div *ngIf="registerForm.errors?.mismatchedPasswords && (registerForm.touched || registerForm.dirty)"
+                        class="cross-validation-error-message alert alert-danger">
+                        Passwords are not matching.
+                    </div>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" 
+                            id="tosResponse" formControlName="tosResponse" required>
+                        <label class="form-check-label" for="tosResponse">
+                            I agree to the <a href="#" (click)="toggleTos()">Terms and Conditions</a>
+                        </label>
+                    </div>
+                </div>
+
+            </form>
+        </ng-container>
+        <ng-container *ngIf="showTos === true">
+            <app-terms></app-terms>
+        </ng-container>
+    </div>
+    <div class="modal-footer bg-dark">
+        <ng-container *ngIf="showTos === false">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" id="registerBtn" (click)="onSubmit()"
+            [disabled]="!registerForm.valid" data-bs-dismiss="modal">Register</button>
+        </ng-container>
+        <ng-container *ngIf="showTos === true">
+            <button type="button" class="btn btn-secondary" (click)="toggleTos()">Close</button>
+        </ng-container>
+    </div>
+</ng-container>

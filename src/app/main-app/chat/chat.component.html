@@ -1,0 +1,37 @@
+<!--
+    #messages div is the chat log. Note the ngFor
+    directive used to generate new messages in the DOM from the
+    messages array. 
+-->
+<div id='messages' class="text-light"
+    [style.padding-bottom.px] = "footerHeight">
+    <div *ngFor="let message of messages">
+
+        <app-message (userMsgPair)="emitUserMsg($event)"
+            [msg]="message"></app-message>
+       
+    </div>
+</div>
+
+<!--
+    #footer is the bottom footer bar. It holds the input element
+    where users type in new messages and the element that shows
+    the count of online users.
+-->
+<div #footer class="bg-dark fixed-bottom">
+    <div class="row">
+        <p id="numUsers" class="text-light users-p">Current users online: {{numUsers}}</p>
+        <div class="input-group pb-4 pt-2 px-4 chat-input">
+            <input 
+                #input
+                type="text" 
+                class="form-control bg-dark text-light" 
+                placeholder="Say something..."
+                aria-label="Message body"
+                [(ngModel)]="newMessage"
+                (keyup)="$event.keyCode == 13 && sendMessage()"
+            />
+            <button #sendBtn (click)="sendMessage()" class="btn btn-outline-light" type="button">Send</button>
+        </div>
+    </div>
+</div>

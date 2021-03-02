@@ -1,0 +1,26 @@
+<!-- Login Modal -->
+<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header bg-dark bg-gradient">
+                <h5 class="modal-title text-light" id="exampleModalLabel">Log in to chat</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <!--
+                ngIf directive prevents components inside the containers
+                from being rendered in the DOM. It differs from making it invisible
+                because the elements will simply not exist in the DOM until
+                the conditions are met
+            -->
+            <ng-container *ngIf="showForm === false">
+                <app-captcha #captcha [getCaptcha]="getCaptcha" (onValidation)="setShowForm($event)"></app-captcha>
+            </ng-container>
+
+            <ng-container *ngIf="showForm">
+                <app-login-form #form></app-login-form>
+            </ng-container>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,62 @@
+<div class="container-fluid bg-dark" [style.height.px]="pageHeight" [style.width.px]="pageWidth">
+    <div class="row">
+        <div class="col-12" style="padding-top: 150px;">
+            <p class="text-light text-center fs-5">
+                A six digit code has been sent to you by text.
+                Please enter the code in the field below to verify your account.
+            </p>
+        </div>
+    </div>
+
+    <!-- 
+        This is the main form for the component. It can optionally be moved
+        to it's own component for further readability.
+        The *ngIf directive checks for null values(in case of an uninitalized
+        form) since for this project the compiler has strict null checks enabled. 
+    -->
+    <ng-container *ngIf="verifyForm">
+        <form [formGroup]="verifyForm" #formDir="ngForm" class="form">
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" formControlName="smsCode" placeholder="smsCode"
+                            id="smsCode" maxlength="6" aria-describedby="username-error">
+                        <label for="registerUser">6-digit SMS code</label>
+                        <!--
+                            This div holds the error messages in case of validation
+                            mistakes. 
+                        -->
+                        <div *ngIf="smsCode && smsCode.invalid && (smsCode.dirty || smsCode.touched)"
+                            class="alert alert-danger">
+                            <ng-container *ngIf="smsCode.errors">
+                                <div *ngIf="smsCode.errors.required">
+                                    A code is required.
+                                </div>
+                                <div *ngIf="smsCode.errors.minlength">
+                                    Code must be exactly 6 digits long.
+                                </div>
+                            </ng-container>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-6">
+                    <a class="text-light" (click)="onRequestNewVerification()">Didn't get a code?</a>
+                </div>
+                <div class="col-6">
+                    <!--
+                        Note the [disabled] directive. This will keep the form
+                        from submitting until all the validation requirements are met.
+                    -->
+                    <button type="button" 
+                        (click)="onSubmit()"
+                        [disabled]="!verifyForm.valid" class="btn btn-primary btn-verify">Verify</button>
+                </div>
+            </div>
+        </form>
+    </ng-container>
+</div>

@@ -1,0 +1,35 @@
+<div #modalBody class="modal-body bg-secondary">
+    <ng-container *ngIf="showTos === false">
+        <p>Before registering a new account, please solve the CAPTCHA</p>
+        <div class="form-floating mb-3 d-flex justify-content-center">
+            <img class="" [src]="captchaImg">
+        </div>
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" [(ngModel)]="captchaResponse" required>
+            <label for="phone">Enter the text you see above</label>
+        </div>
+        <div class="form-floating mb-3">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" [(ngModel)]="tosResponse" required>
+                <label class="form-check-label" for="flexCheckDefault">
+                    I agree to the <a href="#" (click)="toggleTos()">Terms and Conditions</a>
+                </label>
+            </div>
+        </div>
+    </ng-container>
+    
+    <ng-container *ngIf="showTos === true">
+        <app-terms></app-terms>
+    </ng-container>
+</div>
+
+
+<div class="modal-footer bg-dark">
+    <ng-container *ngIf="showTos === false">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="onSubmit()">Validate</button>
+    </ng-container>
+    <ng-container *ngIf="showTos === true">
+        <button type="button" class="btn btn-secondary" (click)="toggleTos()">Close</button>
+    </ng-container>
+</div>

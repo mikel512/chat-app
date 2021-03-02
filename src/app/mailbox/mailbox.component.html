@@ -1,0 +1,32 @@
+<div class="container-fluid bg-dark" [style.height.px]="pageHeight">
+    <div class="d-flex justify-content-center spacing-title">
+        <div class="row">
+            <div class="col-12">
+                <h2 class="text-light">Your mailbox</h2>
+            </div>
+        </div>
+    </div>
+    <hr/>
+
+    <div class="row spacing-headers">
+        <div class="col-4 text-light">
+            Sender
+        </div>
+        <div class="col-4 text-light">
+            Subject
+        </div>
+        <div class="col-4 text-light">
+            <button class="btn btn-outline-light" routerLink="/main-app">
+                Back to chat
+            </button>
+        </div>  
+    </div>
+
+    <div class="row">
+        <div class="accordion accordion-flush" id="accordionEmail">
+            <div *ngFor="let email of emails">
+                <app-email [email]="email"></app-email>
+            </div>
+        </div>
+    </div>
+</div>

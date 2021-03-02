@@ -1,0 +1,62 @@
+<div class="modal fade" tabindex="-1" id="reportModal">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Report user {{toReport}}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <ng-container #formContainer *ngIf="reportForm">
+                <div class="modal-body">
+                    <form [formGroup]="reportForm">
+                        <!-- Report type -->
+                        <div class="mb-3 form-floating">
+                            <select class="form-select" formControlName="type" id="reportSelect">
+                                <option value="spam">Spam</option>
+                                <option value="profanity">Profanity</option>
+                                <option value="hate">Hate</option>
+                                <option value="other">Other</option>
+                            </select>
+                            <label for="reportSelect">Reason for report</label>
+                            <div *ngIf="type && type.invalid && (type.dirty || type.touched)"
+                                class="alert alert-danger">
+                                <ng-container *ngIf="type.errors">
+                                    <div *ngIf="type.errors.required">
+                                        Report type is required.
+                                    </div>
+                                </ng-container>
+                            </div>
+                        </div>
+
+                        <!-- Comment field -->
+                        <div class="mb-3 form-floating">
+                            <textarea id="commentTextarea" class="form-control" formControlName="comment"
+                                style="height: 10em;"></textarea>
+                            <label for="commentTextarea">Comments</label>
+                            <div *ngIf="comment && comment.invalid && (comment.dirty || comment.touched)"
+                                class="alert alert-danger">
+                                <ng-container *ngIf="comment.errors">
+                                    <div *ngIf="comment.errors.required">
+                                        Comment is required.
+                                    </div>
+                                </ng-container>
+                            </div>
+                        </div>
+
+                        <!-- Urgent checkbox -->
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" formControlName="urgent" id="defaultCheck1">
+                            <label class="form-check-label" for="defaultCheck1">
+                                Is this report urgent?
+                            </label>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
+                        [disabled]="!reportForm.valid" (click)="onSubmit()">Submit</button>
+                </div>
+            </ng-container>
+        </div>
+    </div>
+</div>

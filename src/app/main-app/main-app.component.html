@@ -1,0 +1,28 @@
+<!--
+    (onHeightSet) & (onModeSet) are the @Output properties from
+    the navbar component. This passes the corresponding values as
+    an $event variable into the getNavSize & setMode functions
+    inside this component.
+-->
+<app-navbar-good #navbar
+     (onHeightSet)="getNavSize($event)" 
+    (onModeSet)="setMode($event)" class="row"></app-navbar-good>
+
+<div #mainChat class="row" 
+    [style.padding-top.px]="navHeight"
+    [style.height.px]="contentHeight" >
+
+    <app-sidebar-good id="sidebar" 
+        (onChooseUser)="setChosenUser($event)"
+        class="col-sm-3 d-none d-sm-block bg-secondary g-0"></app-sidebar-good>
+    <!--
+        [viewMode] is a property of the chat component which is being set by
+        the theme property in this component.
+    -->
+    <app-chat-good id="mainChat" (onChosenUser)="setUserMsgPair($event)"
+        [viewMode]="theme" class="col-12 col-sm-9 g-0 bg-dark bg-gradient"></app-chat-good>
+</div>
+
+<app-report [toReport]="chooseUser" [reportMsg]="reportMsg"></app-report>
+<app-send-mail [toEmail]="chooseUser"></app-send-mail>
+<app-mail-modal></app-mail-modal>

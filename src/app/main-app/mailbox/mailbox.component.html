@@ -1,0 +1,16 @@
+<div class="row spacing-headers">
+    <div class="col-4 text-light">
+        Sender
+    </div>
+    <div class="col-4 text-light">
+        Subject
+    </div>
+</div>
+
+<div class="row">
+    <div class="accordion accordion-flush" id="accordionEmail">
+        <div *ngFor="let email of inbox">
+            <app-email [email]="email"></app-email>
+        </div>
+    </div>
+</div>
