@@ -30,7 +30,6 @@ speed-measure-plugin*.json
 !.vscode/launch.json
 !.vscode/extensions.json
 .history/*
-.vs/*
 
 # misc
 /.sass-cache
@@ -50,3 +49,5 @@ e2e/*.map
 # System Files
 .DS_Store
 Thumbs.db
+.vs
+/e2e
